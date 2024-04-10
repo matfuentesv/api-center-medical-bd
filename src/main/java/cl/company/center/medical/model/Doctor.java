@@ -1,31 +1,32 @@
 package cl.company.center.medical.model;
 
-public class Doctor {
+import jakarta.persistence.*;
 
-    private String id;
+@Entity
+@Table(name = "DOCTOR", schema = "DSY2201")
+public class Doctor {
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "specialization")
     private String specialization;
+    @Column(name = "phoneNumber")
     private String phoneNumber;
+    @Column(name = "email")
     private String email;
+    @Column(name = "consultationHours")
     private String consultationHours;
+    @Column(name = "hospital")
     private String hospital;
 
-    public Doctor(){}
-    public Doctor(String id, String name, String specialization, String phoneNumber, String email, String consultationHours, String hospital) {
-        this.id = id;
-        this.name = name;
-        this.specialization = specialization;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.consultationHours = consultationHours;
-        this.hospital = hospital;
-    }
-
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -61,19 +62,19 @@ public class Doctor {
         this.email = email;
     }
 
-    public String getConsultationHours() {
-        return consultationHours;
-    }
-
-    public void setConsultationHours(String consultationHours) {
-        this.consultationHours = consultationHours;
-    }
-
     public String getHospital() {
         return hospital;
     }
 
     public void setHospital(String hospital) {
         this.hospital = hospital;
+    }
+
+    public String getConsultationHours() {
+        return consultationHours;
+    }
+
+    public void setConsultationHours(String consultationHours) {
+        this.consultationHours = consultationHours;
     }
 }

@@ -1,26 +1,39 @@
 package cl.company.center.medical.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "medical_record")
 public class MedicalRecord {
 
-    private String date;
-    private Doctor doctor;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String diagnosis;
     private String treatment;
 
-    public String getDate() {
-        return date;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "patient_id")
+    private Patient patient;
+
+    // Constructor vacío requerido por JPA
+    public MedicalRecord() {
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public MedicalRecord(String diagnosis, String treatment) {
+        this.diagnosis = diagnosis;
+        this.treatment = treatment;
     }
 
-    public Doctor getDoctor() {
-        return doctor;
+    // Getters y setters
+
+    public Long getId() {
+        return id;
     }
 
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getDiagnosis() {
@@ -37,5 +50,13 @@ public class MedicalRecord {
 
     public void setTreatment(String treatment) {
         this.treatment = treatment;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 }

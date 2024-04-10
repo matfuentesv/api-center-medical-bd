@@ -1,65 +1,74 @@
 package cl.company.center.medical.model;
 
+import jakarta.persistence.*;
+
 import java.util.List;
 
+@Entity
+@Table(name = "patient")
 public class Patient {
 
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String name;
     private int age;
     private String address;
+
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<MedicalRecord> medicalRecords;
 
-    public Patient(String id, String name, int age, String address, List<MedicalRecord> medicalRecords) {
-        this.id = id;
+    // Constructor vacío requerido por JPA
+    public Patient() {
+    }
+
+    public Patient(String name, int age, String address, List<MedicalRecord> medicalRecords) {
         this.name = name;
         this.age = age;
         this.address = address;
         this.medicalRecords = medicalRecords;
     }
 
-    public String getId() {
+    // Getters y setters
+
+    public Long getId() {
         return id;
     }
 
-    public Patient setId(String id) {
+    public void setId(Long id) {
         this.id = id;
-        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public Patient setName(String name) {
+    public void setName(String name) {
         this.name = name;
-        return this;
     }
 
     public int getAge() {
         return age;
     }
 
-    public Patient setAge(int age) {
+    public void setAge(int age) {
         this.age = age;
-        return this;
     }
 
     public String getAddress() {
         return address;
     }
 
-    public Patient setAddress(String address) {
+    public void setAddress(String address) {
         this.address = address;
-        return this;
     }
 
     public List<MedicalRecord> getMedicalRecords() {
         return medicalRecords;
     }
 
-    public Patient setMedicalRecords(List<MedicalRecord> medicalRecords) {
+    public void setMedicalRecords(List<MedicalRecord> medicalRecords) {
         this.medicalRecords = medicalRecords;
-        return this;
     }
 }
