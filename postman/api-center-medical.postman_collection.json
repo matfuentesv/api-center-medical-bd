@@ -1,0 +1,92 @@
+{
+	"info": {
+		"_postman_id": "32c8eee8-606e-454d-97b5-6e3d309cde6a",
+		"name": "api-center-medical",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29351789"
+	},
+	"item": [
+		{
+			"name": "getAllPatients",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/api/getAllPatients",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"getAllPatients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "historicalMedicalRecords",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/api/historicalMedicalRecords/Jane",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"historicalMedicalRecords",
+						"Jane"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "allMedicalRecords",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/api/allMedicalRecords",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"allMedicalRecords"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findDoctor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/api/findDoctor/Dr. Smith",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"findDoctor",
+						"Dr. Smith"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
