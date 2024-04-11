@@ -1,6 +1,6 @@
 package cl.company.center.medical.repository;
 
-import cl.company.center.medical.model.Doctor;
+import cl.company.center.medical.repository.model.Doctor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

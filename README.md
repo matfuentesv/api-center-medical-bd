@@ -26,7 +26,7 @@ Respuesta:
     "name": "John",
     "age": 30,
     "address": "Avenida 456",
-    "medicalRecords": [
+    "historialMedicos": [
       {
         "date": "2022-01-15",
         "doctor": {
@@ -76,7 +76,7 @@ Respuesta:
     "name": "Jane",
     "age": 25,
     "address": "Calle Principal",
-    "medicalRecords": [
+    "historialMedicos": [
       {
         "date": "2022-04-10",
         "doctor": {
