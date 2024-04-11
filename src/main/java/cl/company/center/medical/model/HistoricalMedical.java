@@ -1,27 +1,29 @@
-package cl.company.center.medical.repository.model;
+package cl.company.center.medical.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
-@Entity
-public class Historial_Medico {
+@Entity(name = "Historial_Medico")
+public class HistoricalMedical {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "FECHA")
+    @Column(name = "fecha")
     private String fecha;
 
-    @Column(name = "DIAGNOSTICO")
+    @Column(name = "diagnostico")
     private String diagnostico;
 
-    @Column(name = "TRATAMIENTO")
+    @Column(name = "tratamiento")
     private String tratamiento;
 
     @ManyToOne
-    @JoinColumn(name = "DOCTOR_ID")
+    @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 
     @ManyToOne
-    @JoinColumn(name = "PACIENTE_ID")
+    @JsonIgnore
+    @JoinColumn(name = "paciente_id")
     private Paciente paciente;
 
     public Long getId() {

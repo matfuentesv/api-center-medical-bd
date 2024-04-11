@@ -1,18 +1,18 @@
-package cl.company.center.medical.repository.model;
+package cl.company.center.medical.model;
 
 import jakarta.persistence.*;
 
-@Entity
+@Entity(name = "Paciente")
 public class Paciente {
     @Id
     private Long id;
-    @Column(name = "NOMBRE")
+    @Column(name = "nombre")
     private String nombre;
-    @Column(name = "APELLIDO")
+    @Column(name = "apellido")
     private String apellido;
-    @Column(name = "EDAD")
+    @Column(name = "edad")
     private int edad;
-    @Column(name = "DIRECCION")
+    @Column(name = "direccion")
     private String direccion;
 
 

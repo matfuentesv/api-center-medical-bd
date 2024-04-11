@@ -1,4 +1,4 @@
-package cl.company.center.medical.repository.model;
+package cl.company.center.medical.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
