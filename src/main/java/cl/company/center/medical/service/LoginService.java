@@ -7,7 +7,7 @@ public interface LoginService {
 
     ResponseEntity<Object>findAllDoctor(String user,String password);
     ResponseEntity<Object>findDoctor(String user,String password,String name);
-    ResponseEntity<Object>getHistoryPatientByName(String user,String password,String name);
+    ResponseEntity<Object>getHistoryPatientByRun(String user,String password,String name);
     ResponseEntity<Object> createDoctor(String user,String password,Doctor doctor);
     ResponseEntity<Object> updateDoctor(String user,String password,Long id,Doctor doctor);
     ResponseEntity<Object> deleteDoctor(String user,String password,Long id);

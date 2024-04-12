@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 @Entity(name = "Paciente")
 public class Patient {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
     @Column(name = "nombre")
     private String nombre;
@@ -14,6 +16,8 @@ public class Patient {
     private int edad;
     @Column(name = "direccion")
     private String direccion;
+    @Column(name = "run")
+    private String run;
 
 
     public Long getId() {
@@ -61,4 +65,12 @@ public class Patient {
         return this;
     }
 
+    public String getRun() {
+        return run;
+    }
+
+    public Patient setRun(String run) {
+        this.run = run;
+        return this;
+    }
 }

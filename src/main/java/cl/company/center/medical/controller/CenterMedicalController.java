@@ -26,21 +26,21 @@ public class CenterMedicalController {
 
 
     // Endpoint que busca el historial medico de un paciente
-    @GetMapping("/findHistoryPatientByName/{name}")
-    public ResponseEntity<Object> getHistoryPatientByName(@PathVariable String name,
+    @GetMapping("/findHistoryPatientByRun/{run}")
+    public ResponseEntity<Object> findHistoryPatientByRun(@PathVariable String run,
                                                           @RequestHeader("user") String user,
                                                           @RequestHeader("password") String password) {
 
-        if ( StringUtils.containsWhitespace(name) || user.isEmpty() || password.isEmpty()) {
+        if ( StringUtils.containsWhitespace(run) || user.isEmpty() || password.isEmpty()) {
             log.error("Algunos de los parámetros no se ingresaron");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("Algunos de los parámetros no se ingresaron"));
         }
-        return ResponseEntity.ok(loginService.getHistoryPatientByName(user,password,name));
+        return ResponseEntity.ok(loginService.getHistoryPatientByRun(user,password,run));
     }
 
     // Endpoint que busca todos los medicos
     @GetMapping("/findAllDoctor")
-    public ResponseEntity<Object> getAllMedicalRecords(@RequestHeader("user") String user,
+    public ResponseEntity<Object> findAllDoctor(@RequestHeader("user") String user,
                                                        @RequestHeader("password") String password) {
         if (user.isEmpty() || password.isEmpty()) {
             log.error("Algunos de los parámetros no se ingresaron");
@@ -54,6 +54,7 @@ public class CenterMedicalController {
     public ResponseEntity<Object> findDoctor(@PathVariable String name,
                                              @RequestHeader("user") String user,
                                              @RequestHeader("password") String password) {
+
         if ( StringUtils.containsWhitespace(name) || user.isEmpty() || password.isEmpty()) {
             log.error("Algunos de los parámetros no se ingresaron");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("Algunos de los parámetros no se ingresaron"));

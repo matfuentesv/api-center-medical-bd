@@ -26,8 +26,8 @@ public class MedicalServiceImpl implements MedicalService {
 
 
     @Override
-    public List<HistoricalMedical> getHistoryPatientByName(String name) {
-        Predicate<HistoricalMedical> predicate = x-> x.getPaciente().getNombre().equalsIgnoreCase(name);
+    public List<HistoricalMedical> getHistoryPatientByRun(String run) {
+        Predicate<HistoricalMedical> predicate = x-> x.getPaciente().getRun().equalsIgnoreCase(run);
         return medicalRecordRepository
                                .findAll()
                                .stream()

@@ -22,7 +22,6 @@ public class HistoricalMedical {
     private Doctor doctor;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "paciente_id")
     private Patient patient;
 
@@ -66,6 +65,7 @@ public class HistoricalMedical {
         this.doctor = doctor;
     }
 
+    @JsonIgnore
     public Patient getPaciente() {
         return patient;
     }

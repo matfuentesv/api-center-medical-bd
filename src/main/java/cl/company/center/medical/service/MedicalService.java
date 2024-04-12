@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface MedicalService {
 
 
-    List<HistoricalMedical> getHistoryPatientByName(String name);
+    List<HistoricalMedical> getHistoryPatientByRun(String run);
     List<Doctor> getAllDoctor();
     Optional<Doctor> findDoctorByName(String name);
     Doctor createDoctor(Doctor doctor);

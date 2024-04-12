@@ -50,10 +50,10 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public ResponseEntity<Object>getHistoryPatientByName(String user, String password, String name) {
+    public ResponseEntity<Object>getHistoryPatientByRun(String user, String password, String name) {
         final boolean userValid = userRepository.findByUserPassword(user,password).isPresent();
         if(userValid){
-            return ResponseEntity.ok(medicalService.getHistoryPatientByName(name));
+            return ResponseEntity.ok(medicalService.getHistoryPatientByRun(name));
         }else {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED.name(), HttpStatus.UNAUTHORIZED);
         }
