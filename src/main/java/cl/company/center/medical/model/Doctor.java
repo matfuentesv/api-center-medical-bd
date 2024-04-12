@@ -1,13 +1,13 @@
 package cl.company.center.medical.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity(name = "Doctor")
 public class Doctor {
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
     @Column(name = "nombre")
     private String nombre;
     @Column(name = "apellido")
@@ -23,11 +23,11 @@ public class Doctor {
     @Column(name = "hospital")
     private String hospital;
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

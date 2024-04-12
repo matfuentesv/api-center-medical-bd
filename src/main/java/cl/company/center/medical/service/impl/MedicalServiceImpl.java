@@ -44,4 +44,19 @@ public class MedicalServiceImpl implements MedicalService {
     public Optional<Doctor> findDoctorByName(String name) {
         return doctorRepository.findByName(name);
     }
+
+    @Override
+    public Doctor createDoctor(Doctor doctor) {
+        return doctorRepository.save(doctor);
+    }
+
+    @Override
+    public Doctor updateDoctor(Long id, Doctor doctor) {
+        return null;
+    }
+
+    @Override
+    public void deleteDoctor(Long id) {
+
+    }
 }
