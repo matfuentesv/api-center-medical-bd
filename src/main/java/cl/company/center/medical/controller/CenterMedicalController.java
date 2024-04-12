@@ -70,12 +70,21 @@ public class CenterMedicalController {
         return ResponseEntity.ok(loginService.createDoctor(user,password,doctor));
     }
 
+    //Actualiza un doctor
     @PutMapping("/updateDoctor/{id}")
     public ResponseEntity<Object> updateDoctor(@PathVariable Long id,
                                                @RequestHeader("user") String user,
                                                @RequestHeader("password") String password,
                                                @RequestBody Doctor doctor) {
         return ResponseEntity.ok(loginService.updateDoctor(user,password,id,doctor));
+    }
+
+    //Elimina un doctor
+    @DeleteMapping("/deleteDoctor/{id}")
+    public ResponseEntity<Object> deleteDoctor(@PathVariable Long id,
+                                               @RequestHeader("user") String user,
+                                               @RequestHeader("password") String password) {
+        return ResponseEntity.ok(loginService.deleteDoctor(user, password, id));
     }
 
 

@@ -57,7 +57,7 @@ public class MedicalServiceImpl implements MedicalService {
 
     @Override
     public void deleteDoctor(Long id) {
-
+        doctorRepository.deleteById(id);
     }
 
     @Override
