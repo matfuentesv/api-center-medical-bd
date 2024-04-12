@@ -11,5 +11,8 @@ public interface MedicalRecordRepository extends JpaRepository<HistoricalMedical
     @Query("SELECT u FROM Historial_Medico u WHERE u.doctor.id = ?1")
     Optional<HistoricalMedical> findDoctor(Long id);
 
+    @Query("SELECT u FROM Historial_Medico u WHERE u.paciente.id = ?1")
+    Optional<HistoricalMedical> findPatient(Long id);
+
 
 }

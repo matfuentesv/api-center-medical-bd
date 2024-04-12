@@ -23,7 +23,7 @@ public class HistoricalMedical {
 
     @ManyToOne
     @JoinColumn(name = "paciente_id")
-    private Patient patient;
+    private Patient paciente;
 
     public Long getId() {
         return id;
@@ -67,12 +67,10 @@ public class HistoricalMedical {
 
     @JsonIgnore
     public Patient getPaciente() {
-        return patient;
+        return paciente;
     }
 
-    public void setPaciente(Patient patient) {
-        this.patient = patient;
+    public void setPaciente(Patient paciente) {
+        this.paciente = paciente;
     }
-
-
 }

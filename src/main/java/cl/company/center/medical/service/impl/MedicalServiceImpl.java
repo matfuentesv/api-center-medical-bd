@@ -2,8 +2,10 @@ package cl.company.center.medical.service.impl;
 
 import cl.company.center.medical.model.Doctor;
 import cl.company.center.medical.model.HistoricalMedical;
+import cl.company.center.medical.model.Patient;
 import cl.company.center.medical.repository.DoctorRepository;
 import cl.company.center.medical.repository.MedicalRecordRepository;
+import cl.company.center.medical.repository.PatientRepository;
 import cl.company.center.medical.service.MedicalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,9 @@ public class MedicalServiceImpl implements MedicalService {
 
     @Autowired
     private DoctorRepository doctorRepository;
+
+    @Autowired
+    private PatientRepository patientRepository;
 
     @Autowired
     private MedicalRecordRepository medicalRecordRepository;
@@ -63,5 +68,35 @@ public class MedicalServiceImpl implements MedicalService {
     @Override
     public boolean existsDoctorById(Long id) {
         return doctorRepository.existsById(id);
+    }
+
+    @Override
+    public List<Patient> getAllPatient() {
+        return patientRepository.findAll();
+    }
+
+    @Override
+    public Optional<Patient> findPatientByRun(String run) {
+        return patientRepository.findByRun(run);
+    }
+
+    @Override
+    public Patient createPatient(Patient patient) {
+        return patientRepository.save(patient);
+    }
+
+    @Override
+    public Patient updatePatient(Patient patient) {
+        return patientRepository.save(patient);
+    }
+
+    @Override
+    public boolean existsPatientById(Long id) {
+        return patientRepository.existsById(id);
+    }
+
+    @Override
+    public void deletePatient(Long id) {
+        patientRepository.deleteById(id);
     }
 }
