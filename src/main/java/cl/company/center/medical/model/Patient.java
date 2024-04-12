@@ -3,7 +3,7 @@ package cl.company.center.medical.model;
 import jakarta.persistence.*;
 
 @Entity(name = "Paciente")
-public class Paciente {
+public class Patient {
     @Id
     private Long id;
     @Column(name = "nombre")
@@ -20,7 +20,7 @@ public class Paciente {
         return id;
     }
 
-    public Paciente setId(Long id) {
+    public Patient setId(Long id) {
         this.id = id;
         return this;
     }
@@ -29,7 +29,7 @@ public class Paciente {
         return nombre;
     }
 
-    public Paciente setNombre(String nombre) {
+    public Patient setNombre(String nombre) {
         this.nombre = nombre;
         return this;
     }
@@ -38,7 +38,7 @@ public class Paciente {
         return apellido;
     }
 
-    public Paciente setApellido(String apellido) {
+    public Patient setApellido(String apellido) {
         this.apellido = apellido;
         return this;
     }
@@ -47,7 +47,7 @@ public class Paciente {
         return edad;
     }
 
-    public Paciente setEdad(int edad) {
+    public Patient setEdad(int edad) {
         this.edad = edad;
         return this;
     }
@@ -56,7 +56,7 @@ public class Paciente {
         return direccion;
     }
 
-    public Paciente setDireccion(String direccion) {
+    public Patient setDireccion(String direccion) {
         this.direccion = direccion;
         return this;
     }

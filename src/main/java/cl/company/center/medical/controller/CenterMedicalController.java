@@ -1,41 +1,59 @@
 package cl.company.center.medical.controller;
 
-import cl.company.center.medical.model.Doctor;
-import cl.company.center.medical.model.HistoricalMedical;
-import cl.company.center.medical.service.MedicalService;
+import cl.company.center.medical.exception.ErrorResponse;
+import cl.company.center.medical.service.LoginService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import java.util.List;
-import java.util.Optional;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping("/api")
 public class CenterMedicalController {
 
+    private static final Logger log = LoggerFactory.getLogger(CenterMedicalController.class);
+
     @Autowired
-    private MedicalService medicalService;
+    LoginService loginService;
 
 
-    @GetMapping("/historicalMedical/{name}")
-    public ResponseEntity<List<HistoricalMedical>> getHistoricalMedical(@PathVariable String name) {
-        return ResponseEntity.ok(medicalService.getHistoricalMedical(name));
+
+    @GetMapping("/findHistoryPatientByName/{name}")
+    public ResponseEntity<Object> getHistoryPatientByName(@PathVariable String name,
+                                                          @RequestHeader("user") String user,
+                                                          @RequestHeader("password") String password) {
+
+        if ( StringUtils.containsWhitespace(name) || user.isEmpty() || password.isEmpty()) {
+            log.error("Algunos de los parámetros no se ingresaron");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("Algunos de los parámetros no se ingresaron"));
+        }
+        return ResponseEntity.ok(loginService.getHistoryPatientByName(user,password,name));
     }
 
-    @GetMapping("/allMedicalRecords")
-    public ResponseEntity<List<Doctor>> getAllMedicalRecords() {
-        List<Doctor> doctor = medicalService.getAllDoctor();
-        return ResponseEntity.ok(doctor);
+    @GetMapping("/findAllDoctor")
+    public ResponseEntity<Object> getAllMedicalRecords(@RequestHeader("user") String user,
+                                                       @RequestHeader("password") String password) {
+        if (user.isEmpty() || password.isEmpty()) {
+            log.error("Algunos de los parámetros no se ingresaron");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("Algunos de los parámetros no se ingresaron"));
+        }
+        return ResponseEntity.ok(loginService.findAllDoctor(user,password));
     }
 
 
     @GetMapping("/findDoctor/{name}")
-    public ResponseEntity<Doctor> findDoctor(@PathVariable String name) {
-        Optional<Doctor> o = medicalService.findDoctorByName(name);
-        return o.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<Object> findDoctor(@PathVariable String name,
+                                             @RequestHeader("user") String user,
+                                             @RequestHeader("password") String password) {
+        if ( StringUtils.containsWhitespace(name) || user.isEmpty() || password.isEmpty()) {
+            log.error("Algunos de los parámetros no se ingresaron");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("Algunos de los parámetros no se ingresaron"));
+        }
+        return ResponseEntity.ok(loginService.findDoctor(user,password,name));
     }
 
 

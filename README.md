@@ -7,7 +7,7 @@ Api encargada de gestionar informacion de pacientes y medicos:
 ## Uso básico
 ```http
 GET /getAllPatients                    : Obtiene la lista completa de pacientes
-GET /historicalMedicalRecords/{name}   : Obtiene el historial del paciente filtrado por su nombre 
+GET /historicalMedicalRecords/{name}   : Obtiene el historial del patient filtrado por su nombre 
 GET /allMedicalRecords                 : Obtiene el listado completo de medicos
 GET /findDoctor/{name}                 : Obtiene un medico filtrado por nombre
 ```
@@ -125,7 +125,7 @@ Respuesta:
 ```
 
 
-### Obtiene el historial del paciente filtrado por su nombre
+### Obtiene el historial del patient filtrado por su nombre
 
 GET /historicalMedicalRecords/{name}
 

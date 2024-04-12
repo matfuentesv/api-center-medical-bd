@@ -1,9 +1,10 @@
-package cl.company.center.medical.service;
+package cl.company.center.medical.service.impl;
 
 import cl.company.center.medical.model.Doctor;
 import cl.company.center.medical.model.HistoricalMedical;
 import cl.company.center.medical.repository.DoctorRepository;
 import cl.company.center.medical.repository.MedicalRecordRepository;
+import cl.company.center.medical.service.MedicalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +26,7 @@ public class MedicalServiceImpl implements MedicalService {
 
 
     @Override
-    public List<HistoricalMedical> getHistoricalMedical(String name) {
+    public List<HistoricalMedical> getHistoryPatientByName(String name) {
         Predicate<HistoricalMedical> predicate = x-> x.getPaciente().getNombre().equalsIgnoreCase(name);
         return medicalRecordRepository
                                .findAll()

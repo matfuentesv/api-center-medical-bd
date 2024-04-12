@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface MedicalService {
 
 
-    List<HistoricalMedical> getHistoricalMedical(String name);
+    List<HistoricalMedical> getHistoryPatientByName(String name);
     List<Doctor> getAllDoctor();
     Optional<Doctor> findDoctorByName(String name);
 
