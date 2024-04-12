@@ -1,6 +1,10 @@
 package cl.company.center.medical.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import org.springframework.data.repository.NoRepositoryBean;
 
 @Entity(name = "Doctor")
 public class Doctor {
@@ -9,18 +13,33 @@ public class Doctor {
     @Column(name = "id")
     private Long id;
     @Column(name = "nombre")
+    @NotBlank(message = "No puede ingresar un nombre vacio")
+    @NotNull(message = "No puede ingresar un nombre nulo")
     private String nombre;
     @Column(name = "apellido")
+    @NotBlank(message = "No puede ingresar un apellido vacio")
+    @NotNull(message = "No puede ingresar un apellido nulo")
     private String apellido;
     @Column(name = "especializacion")
+    @NotBlank(message = "No puede ingresar una especializacion vacio")
+    @NotNull(message = "No puede ingresar una especializacion nulo")
     private String especializacion;
     @Column(name = "celular")
+    @NotBlank(message = "No puede ingresar un celular vacio")
+    @NotNull(message = "No puede ingresar un celular nulo")
     private String celular;
     @Column(name = "email")
+    @NotBlank(message = "No puede ingresar un email vacio")
+    @NotNull(message = "No puede ingresar un email nulo")
+    @Email(message = "No puede ingresar un email invalido")
     private String email;
     @Column(name = "horaconsulta")
+    @NotBlank(message = "No puede ingresar un horaConsulta vacio")
+    @NotNull(message = "No puede ingresar un horaConsulta nulo")
     private String horaConsulta;
     @Column(name = "hospital")
+    @NotBlank(message = "No puede ingresar un hospital vacio")
+    @NotNull(message = "No puede ingresar un hospital nulo")
     private String hospital;
 
     public Long getId() {

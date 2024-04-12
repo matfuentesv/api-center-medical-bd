@@ -12,7 +12,8 @@ public interface MedicalService {
     List<Doctor> getAllDoctor();
     Optional<Doctor> findDoctorByName(String name);
     Doctor createDoctor(Doctor doctor);
-    Doctor updateDoctor(Long id,Doctor doctor);
+    Doctor updateDoctor(Doctor doctor);
     void deleteDoctor(Long id);
+    boolean existsDoctorById(Long id);
 
 }

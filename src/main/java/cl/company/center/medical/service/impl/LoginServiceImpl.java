@@ -73,7 +73,18 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public ResponseEntity<Object> updateDoctor(String user, String password, Long id, Doctor doctor) {
-        return null;
+        final boolean userValid = userRepository.findByUserPassword(user,password).isPresent();
+        if(userValid){
+            if(medicalService.existsDoctorById(id)){
+                doctor.setId(id);
+                return ResponseEntity.ok(medicalService.updateDoctor(doctor));
+            }   else {
+                log.error("No se puedo actualizar el doctor,no existe");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("No se puedo actualizar el doctor"));
+            }
+        }else {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED.name(), HttpStatus.UNAUTHORIZED);
+        }
     }
 
     @Override

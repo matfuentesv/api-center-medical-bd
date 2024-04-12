@@ -51,12 +51,17 @@ public class MedicalServiceImpl implements MedicalService {
     }
 
     @Override
-    public Doctor updateDoctor(Long id, Doctor doctor) {
-        return null;
+    public Doctor updateDoctor(Doctor doctor) {
+        return doctorRepository.save(doctor);
     }
 
     @Override
     public void deleteDoctor(Long id) {
 
+    }
+
+    @Override
+    public boolean existsDoctorById(Long id) {
+        return doctorRepository.existsById(id);
     }
 }
