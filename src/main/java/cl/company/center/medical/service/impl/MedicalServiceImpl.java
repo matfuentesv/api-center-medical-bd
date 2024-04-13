@@ -46,8 +46,8 @@ public class MedicalServiceImpl implements MedicalService {
     }
 
     @Override
-    public Optional<Doctor> findDoctorByName(String name) {
-        return doctorRepository.findByName(name);
+    public Optional<Doctor> findDoctorByRun(String name) {
+        return doctorRepository.findByRun(name);
     }
 
     @Override

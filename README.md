@@ -1,257 +1,130 @@
-# api-center-medical
+# API Documentation
 
-Api encargada de gestionar informacion de pacientes y medicos:
+This API provides endpoints to manage doctors and patients in a medical center system. Users can perform CRUD operations on doctors and patients after authentication.
 
+## Authentication
 
+Authentication is required for accessing all endpoints. Users need to provide their username and password in the request headers for authentication.
 
-## Uso básico
-```http
-GET /getAllPatients                    : Obtiene la lista completa de pacientes
-GET /historicalMedicalRecords/{name}   : Obtiene el historial del patient filtrado por su nombre 
-GET /allMedicalRecords                 : Obtiene el listado completo de medicos
-GET /findDoctor/{name}                 : Obtiene un medico filtrado por nombre
-```
+## Base URL
 
+The base URL for accessing the API is `http://example.com/api`.
 
-### Obtiene la lista completa de pacientes
+## Endpoints
 
-GET /getAllPatients
+### 1. Get All Doctors
 
-Respuesta:
+- **URL:** `/doctors`
+- **Method:** GET
+- **Authentication Required:** Yes
+- **Description:** Retrieves a list of all doctors.
+- **Response:**
+    - Status Code: 200 OK
+    - Body: JSON array containing doctor objects.
 
-```json
-[
-  {
-    "id": "1",
-    "name": "John",
-    "age": 30,
-    "address": "Avenida 456",
-    "historialMedicos": [
-      {
-        "date": "2022-01-15",
-        "doctor": {
-          "id": "D001",
-          "name": "Dr. Smith",
-          "specialization": "Cardiología",
-          "phoneNumber": "+123456789",
-          "email": "dr.smith@example.com",
-          "consultationHours": "Lunes a Viernes 9:00-17:00",
-          "hospital": "Hospital Central"
-        },
-        "diagnosis": "Gripe",
-        "treatment": "Descanso y medicación"
-      },
-      {
-        "date": "2022-02-05",
-        "doctor": {
-          "id": "D002",
-          "name": "Dr. Johnson",
-          "specialization": "Pediatría",
-          "phoneNumber": "+987654321",
-          "email": "dr.johnson@example.com",
-          "consultationHours": "Lunes a Viernes 8:00-16:00",
-          "hospital": "Hospital Infantil"
-        },
-        "diagnosis": "Esguince de tobillo",
-        "treatment": "Inmovilización y fisioterapia"
-      },
-      {
-        "date": "2022-03-20",
-        "doctor": {
-          "id": "D003",
-          "name": "Dr. Martinez",
-          "specialization": "Neurología",
-          "phoneNumber": "+112233445",
-          "email": "dr.martinez@example.com",
-          "consultationHours": "Martes y Jueves 10:00-18:00",
-          "hospital": "Hospital Neurológico"
-        },
-        "diagnosis": "Dolor abdominal",
-        "treatment": "Estudios para diagnóstico"
-      }
-    ]
-  },
-  {
-    "id": "2",
-    "name": "Jane",
-    "age": 25,
-    "address": "Calle Principal",
-    "historialMedicos": [
-      {
-        "date": "2022-04-10",
-        "doctor": {
-          "id": "D004",
-          "name": "Dra. Garcia",
-          "specialization": "Dermatología",
-          "phoneNumber": "+554433221",
-          "email": "dra.garcia@example.com",
-          "consultationHours": "Lunes, Miércoles y Viernes 8:30-16:30",
-          "hospital": "Hospital Dermatológico"
-        },
-        "diagnosis": "Fiebre alta",
-        "treatment": "Antibióticos y reposo"
-      },
-      {
-        "date": "2022-05-22",
-        "doctor": {
-          "id": "D005",
-          "name": "Dr. Fernandez",
-          "specialization": "Oftalmología",
-          "phoneNumber": "+778899001",
-          "email": "dr.fernandez@example.com",
-          "consultationHours": "Lunes y Jueves 9:30-17:30",
-          "hospital": "Hospital Oftalmológico"
-        },
-        "diagnosis": "Lesión en la rodilla",
-        "treatment": "Cirugía reconstructiva"
-      },
-      {
-        "date": "2022-06-18",
-        "doctor": {
-          "id": "D006",
-          "name": "Dra. Lopez",
-          "specialization": "Ginecología",
-          "phoneNumber": "+112233445",
-          "email": "dra.lopez@example.com",
-          "consultationHours": "Lunes, Miércoles y Viernes 8:00-16:00",
-          "hospital": "Hospital de la Mujer"
-        },
-        "diagnosis": "Conjuntivitis",
-        "treatment": "Gotas oftálmicas y lavados"
-      }
-    ]
-  }
-]
-```
+### 2. Get Doctor by ID
 
+- **URL:** `/doctors/{id}`
+- **Method:** GET
+- **Authentication Required:** Yes
+- **Description:** Retrieves a specific doctor by their ID.
+- **Response:**
+    - Status Code: 200 OK
+    - Body: JSON object containing the doctor's details.
+    - Status Code: 404 Not Found (If the doctor with the specified ID does not exist)
 
-### Obtiene el historial del patient filtrado por su nombre
+### 3. Create Doctor
 
-GET /historicalMedicalRecords/{name}
+- **URL:** `/doctors`
+- **Method:** POST
+- **Authentication Required:** Yes
+- **Description:** Creates a new doctor.
+- **Request Body:** JSON object containing the doctor's details.
+- **Response:**
+    - Status Code: 201 Created
+    - Body: JSON object containing the created doctor's details.
+    - Status Code: 400 Bad Request (If some parameters are missing in the request body)
 
-Respuesta:
+### 4. Update Doctor
 
-```json
-[
-    {
-        "date": "2022-04-10",
-        "doctor": {
-            "id": "D004",
-            "name": "Dra. Garcia",
-            "specialization": "Dermatología",
-            "phoneNumber": "+554433221",
-            "email": "dra.garcia@example.com",
-            "consultationHours": "Lunes, Miércoles y Viernes 8:30-16:30",
-            "hospital": "Hospital Dermatológico"
-        },
-        "diagnosis": "Fiebre alta",
-        "treatment": "Antibióticos y reposo"
-    },
-    {
-        "date": "2022-05-22",
-        "doctor": {
-            "id": "D005",
-            "name": "Dr. Fernandez",
-            "specialization": "Oftalmología",
-            "phoneNumber": "+778899001",
-            "email": "dr.fernandez@example.com",
-            "consultationHours": "Lunes y Jueves 9:30-17:30",
-            "hospital": "Hospital Oftalmológico"
-        },
-        "diagnosis": "Lesión en la rodilla",
-        "treatment": "Cirugía reconstructiva"
-    },
-    {
-        "date": "2022-06-18",
-        "doctor": {
-            "id": "D006",
-            "name": "Dra. Lopez",
-            "specialization": "Ginecología",
-            "phoneNumber": "+112233445",
-            "email": "dra.lopez@example.com",
-            "consultationHours": "Lunes, Miércoles y Viernes 8:00-16:00",
-            "hospital": "Hospital de la Mujer"
-        },
-        "diagnosis": "Conjuntivitis",
-        "treatment": "Gotas oftálmicas y lavados"
-      }
-  ]
- 
-### Obtiene el listado completo de medicos
+- **URL:** `/doctors/{id}`
+- **Method:** PUT
+- **Authentication Required:** Yes
+- **Description:** Updates an existing doctor.
+- **Request Body:** JSON object containing the updated doctor's details.
+- **Response:**
+    - Status Code: 200 OK
+    - Body: JSON object containing the updated doctor's details.
+    - Status Code: 400 Bad Request (If the doctor ID is invalid or some parameters are missing in the request body)
+    - Status Code: 404 Not Found (If the doctor with the specified ID does not exist)
 
-GET /allMedicalRecords
+### 5. Delete Doctor
 
-Respuesta:
+- **URL:** `/doctors/{id}`
+- **Method:** DELETE
+- **Authentication Required:** Yes
+- **Description:** Deletes an existing doctor.
+- **Response:**
+    - Status Code: 200 OK
+    - Body: String indicating successful deletion.
+    - Status Code: 400 Bad Request (If the doctor ID is invalid or the doctor has associated medical records)
+    - Status Code: 404 Not Found (If the doctor with the specified ID does not exist)
 
-```json
-[
-    {
-        "id": "D001",
-        "name": "Dr. Smith",
-        "specialization": "Cardiología",
-        "phoneNumber": "+123456789",
-        "email": "dr.smith@example.com",
-        "consultationHours": "Lunes a Viernes 9:00-17:00",
-        "hospital": "Hospital Central"
-    },
-    {
-        "id": "D002",
-        "name": "Dr. Johnson",
-        "specialization": "Pediatría",
-        "phoneNumber": "+987654321",
-        "email": "dr.johnson@example.com",
-        "consultationHours": "Lunes a Viernes 8:00-16:00",
-        "hospital": "Hospital Infantil"
-    },
-    {
-        "id": "D003",
-        "name": "Dr. Martinez",
-        "specialization": "Neurología",
-        "phoneNumber": "+112233445",
-        "email": "dr.martinez@example.com",
-        "consultationHours": "Martes y Jueves 10:00-18:00",
-        "hospital": "Hospital Neurológico"
-    },
-    {
-        "id": "D004",
-        "name": "Dra. Garcia",
-        "specialization": "Dermatología",
-        "phoneNumber": "+554433221",
-        "email": "dra.garcia@example.com",
-        "consultationHours": "Lunes, Miércoles y Viernes 8:30-16:30",
-        "hospital": "Hospital Dermatológico"
-    },
-    {
-        "id": "D005",
-        "name": "Dr. Fernandez",
-        "specialization": "Oftalmología",
-        "phoneNumber": "+778899001",
-        "email": "dr.fernandez@example.com",
-        "consultationHours": "Lunes y Jueves 9:30-17:30",
-        "hospital": "Hospital Oftalmológico"
-    },
-    {
-        "id": "D006",
-        "name": "Dra. Lopez",
-        "specialization": "Ginecología",
-        "phoneNumber": "+112233445",
-        "email": "dra.lopez@example.com",
-        "consultationHours": "Lunes, Miércoles y Viernes 8:00-16:00",
-        "hospital": "Hospital de la Mujer"
-    }
-]
+### 6. Get All Patients
 
-### Obtiene un medico filtrado por nombre
+- **URL:** `/patients`
+- **Method:** GET
+- **Authentication Required:** Yes
+- **Description:** Retrieves a list of all patients.
+- **Response:**
+    - Status Code: 200 OK
+    - Body: JSON array containing patient objects.
 
-GET /findDoctor/{name}
+### 7. Get Patient by ID
 
-Respuesta:
-{
-    "id": "D001",
-    "name": "Dr. Smith",
-    "specialization": "Cardiología",
-    "phoneNumber": "+123456789",
-    "email": "dr.smith@example.com",
-    "consultationHours": "Lunes a Viernes 9:00-17:00",
-    "hospital": "Hospital Central"
-}
+- **URL:** `/patients/{id}`
+- **Method:** GET
+- **Authentication Required:** Yes
+- **Description:** Retrieves a specific patient by their ID.
+- **Response:**
+    - Status Code: 200 OK
+    - Body: JSON object containing the patient's details.
+    - Status Code: 404 Not Found (If the patient with the specified ID does not exist)
+
+### 8. Create Patient
+
+- **URL:** `/patients`
+- **Method:** POST
+- **Authentication Required:** Yes
+- **Description:** Creates a new patient.
+- **Request Body:** JSON object containing the patient's details.
+- **Response:**
+    - Status Code: 201 Created
+    - Body: JSON object containing the created patient's details.
+    - Status Code: 400 Bad Request (If some parameters are missing in the request body)
+
+### 9. Update Patient
+
+- **URL:** `/patients/{id}`
+- **Method:** PUT
+- **Authentication Required:** Yes
+- **Description:** Updates an existing patient.
+- **Request Body:** JSON object containing the updated patient's details.
+- **Response:**
+    - Status Code: 200 OK
+    - Body: JSON object containing the updated patient's details.
+    - Status Code: 400 Bad Request (If the patient ID is invalid or some parameters are missing in the request body)
+    - Status Code: 404 Not Found (If the patient with the specified ID does not exist)
+
+### 10. Delete Patient
+
+- **URL:** `/patients/{id}`
+- **Method:** DELETE
+- **Authentication Required:** Yes
+- **Description:** Deletes an existing patient.
+- **Response:**
+    - Status Code: 200 OK
+    - Body: String indicating successful deletion.
+    - Status Code: 400 Bad Request (If the patient ID is invalid or the patient has associated medical records)
+    - Status Code: 404 Not Found (If the patient with the specified ID does not exist)
+

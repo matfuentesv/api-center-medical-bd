@@ -12,7 +12,7 @@ public interface MedicalService {
 
     List<HistoricalMedical> getHistoryPatientByRun(String run);
     List<Doctor> getAllDoctor();
-    Optional<Doctor> findDoctorByName(String name);
+    Optional<Doctor> findDoctorByRun(String run);
     Doctor createDoctor(Doctor doctor);
     Doctor updateDoctor(Doctor doctor);
     void deleteDoctor(Long id);

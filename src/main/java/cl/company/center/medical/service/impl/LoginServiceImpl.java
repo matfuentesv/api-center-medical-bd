@@ -1,6 +1,5 @@
 package cl.company.center.medical.service.impl;
 
-import cl.company.center.medical.controller.CenterMedicalController;
 import cl.company.center.medical.exception.ErrorResponse;
 import cl.company.center.medical.model.Doctor;
 import cl.company.center.medical.model.Patient;
@@ -36,17 +35,17 @@ public class LoginServiceImpl implements LoginService {
         if(userValid){
            return ResponseEntity.ok(medicalService.getAllDoctor());
         }else {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED.name(), HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>("No esta Autorizado para ejecutar este endpoint", HttpStatus.UNAUTHORIZED);
         }
     }
 
     @Override
-    public ResponseEntity<Object> findDoctor(String user, String password, String name) {
+    public ResponseEntity<Object> findDoctor(String user, String password, String run) {
         final boolean userValid = userRepository.findByUserPassword(user,password).isPresent();
         if(userValid){
-            return ResponseEntity.ok(medicalService.findDoctorByName(name));
+            return ResponseEntity.ok(medicalService.findDoctorByRun(run));
         }else {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED.name(), HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>("No esta Autorizado para ejecutar este endpoint", HttpStatus.UNAUTHORIZED);
         }
     }
 
@@ -56,7 +55,7 @@ public class LoginServiceImpl implements LoginService {
         if(userValid){
             return ResponseEntity.ok(medicalService.getHistoryPatientByRun(name));
         }else {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED.name(), HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>("No esta Autorizado para ejecutar este endpoint", HttpStatus.UNAUTHORIZED);
         }
     }
 
@@ -72,7 +71,7 @@ public class LoginServiceImpl implements LoginService {
                 return ResponseEntity.ok(doctor);
             }
         }else {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED.name(), HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>("No esta Autorizado para ejecutar este endpoint", HttpStatus.UNAUTHORIZED);
         }
     }
 
@@ -88,7 +87,7 @@ public class LoginServiceImpl implements LoginService {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("No se puedo actualizar el doctor,no existe"));
             }
         }else {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED.name(), HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>("No esta Autorizado para ejecutar este endpoint", HttpStatus.UNAUTHORIZED);
         }
     }
 
@@ -98,7 +97,7 @@ public class LoginServiceImpl implements LoginService {
         // Verificar la autenticación del usuario
         boolean userValid = userRepository.findByUserPassword(user, password).isPresent();
         if (!userValid) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
+            return new ResponseEntity<>("No esta Autorizado para ejecutar este endpoint", HttpStatus.UNAUTHORIZED);
         }
 
         // Verificar si el doctor existe
@@ -124,7 +123,7 @@ public class LoginServiceImpl implements LoginService {
         if(userValid){
             return ResponseEntity.ok(medicalService.getAllPatient());
         }else {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED.name(), HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>("No esta Autorizado para ejecutar este endpoint", HttpStatus.UNAUTHORIZED);
         }
     }
 
@@ -134,7 +133,7 @@ public class LoginServiceImpl implements LoginService {
         if(userValid){
             return ResponseEntity.ok(medicalService.findPatientByRun(run));
         }else {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED.name(), HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>("No esta Autorizado para ejecutar este endpoint", HttpStatus.UNAUTHORIZED);
         }
     }
 
@@ -150,7 +149,7 @@ public class LoginServiceImpl implements LoginService {
                 return ResponseEntity.ok(patient);
             }
         }else {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED.name(), HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>("No esta Autorizado para ejecutar este endpoint", HttpStatus.UNAUTHORIZED);
         }
     }
 
@@ -166,7 +165,7 @@ public class LoginServiceImpl implements LoginService {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("No se puedo actualizar el doctor,no existe"));
             }
         }else {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED.name(), HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>("No esta Autorizado para ejecutar este endpoint", HttpStatus.UNAUTHORIZED);
         }
     }
 

@@ -1,6 +1,9 @@
 package cl.company.center.medical.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 @Entity(name = "Paciente")
 public class Patient {
@@ -9,14 +12,27 @@ public class Patient {
     @Column(name = "id")
     private Long id;
     @Column(name = "nombre")
+    @NotBlank(message = "No puede ingresar un nombre vacio")
+    @NotNull(message = "No puede ingresar un nombre nulo")
     private String nombre;
     @Column(name = "apellido")
+    @NotBlank(message = "No puede ingresar un apellido vacio")
+    @NotNull(message = "No puede ingresar un apellido nulo")
     private String apellido;
     @Column(name = "edad")
+    @Positive(message = "La edad debe ser mayor a cero")
     private int edad;
     @Column(name = "direccion")
+    @NotBlank(message = "No puede ingresar una direccion vacio")
+    @NotNull(message = "No puede ingresar una direccion nulo")
     private String direccion;
+    @Column(name = "celular")
+    @NotBlank(message = "No puede ingresar un celular vacio")
+    @NotNull(message = "No puede ingresar un celular nulo")
+    private String celular;
     @Column(name = "run")
+    @NotBlank(message = "No puede ingresar un run vacio")
+    @NotNull(message = "No puede ingresar un run nulo")
     private String run;
 
 
@@ -72,5 +88,13 @@ public class Patient {
     public Patient setRun(String run) {
         this.run = run;
         return this;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
     }
 }

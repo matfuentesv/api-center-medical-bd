@@ -42,6 +42,11 @@ public class Doctor {
     @NotNull(message = "No puede ingresar un hospital nulo")
     private String hospital;
 
+    @Column(name = "run")
+    @NotBlank(message = "No puede ingresar un run vacio")
+    @NotNull(message = "No puede ingresar un run nulo")
+    private String run;
+
     public Long getId() {
         return id;
     }
@@ -104,5 +109,13 @@ public class Doctor {
 
     public void setHospital(String hospital) {
         this.hospital = hospital;
+    }
+
+    public String getRun() {
+        return run;
+    }
+
+    public void setRun(String run) {
+        this.run = run;
     }
 }
