@@ -3,9 +3,11 @@ package cl.company.center.medical.service.impl;
 import cl.company.center.medical.model.Doctor;
 import cl.company.center.medical.model.HistoricalMedical;
 import cl.company.center.medical.model.Patient;
+import cl.company.center.medical.model.User;
 import cl.company.center.medical.repository.DoctorRepository;
 import cl.company.center.medical.repository.MedicalRecordRepository;
 import cl.company.center.medical.repository.PatientRepository;
+import cl.company.center.medical.repository.UserRepository;
 import cl.company.center.medical.service.MedicalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +30,14 @@ public class MedicalServiceImpl implements MedicalService {
 
     @Autowired
     private MedicalRecordRepository medicalRecordRepository;
+    @Autowired
+    private UserRepository userRepository;
 
+
+    @Override
+    public Optional<User> findUser(String user) {
+        return userRepository.findUser(user);
+    }
 
     @Override
     public List<HistoricalMedical> getHistoryPatientByRun(String run) {

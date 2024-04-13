@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 
 public interface LoginService {
 
+    ResponseEntity<Object>findUser(String user,String password);
     ResponseEntity<Object>findAllDoctor(String user,String password);
     ResponseEntity<Object>findDoctor(String user,String password,String name);
     ResponseEntity<Object>getHistoryPatientByRun(String user,String password,String name);

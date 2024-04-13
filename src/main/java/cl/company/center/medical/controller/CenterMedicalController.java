@@ -46,6 +46,15 @@ public class CenterMedicalController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(errorMessage));
     }
 
+    @GetMapping("/findUser")
+    public ResponseEntity<Object> findUser(@RequestHeader(value = "user",required = false) String user,
+                                           @RequestHeader(value = "password",required = false) String password) {
+        if ((user == null || password == null) || (user.isEmpty() || password.isEmpty())) {
+            log.error("Algunos de los parámetros no se ingresaron");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("Algunos de los parámetros no se ingresaron"));
+        }
+        return ResponseEntity.ok(loginService.findUser(user,password));
+    }
 
 
     // Endpoint que busca el historial medico de un paciente por su run

@@ -30,6 +30,16 @@ public class LoginServiceImpl implements LoginService {
     private MedicalService medicalService;
 
     @Override
+    public ResponseEntity<Object> findUser(String user, String password) {
+        final boolean userValid = userRepository.findByUserPassword(user,password).isPresent();
+        if(userValid){
+            return ResponseEntity.ok(medicalService.findUser(user));
+        }else {
+            return new ResponseEntity<>("No esta Autorizado para obtener información del usuario", HttpStatus.UNAUTHORIZED);
+        }
+    }
+
+    @Override
     public ResponseEntity<Object> findAllDoctor(String user, String password) {
         final boolean userValid = userRepository.findByUserPassword(user,password).isPresent();
         if(userValid){
